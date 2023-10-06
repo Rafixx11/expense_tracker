@@ -1,3 +1,6 @@
+// This file is responsible for housing the chart_bar widget which is responsible for taking multiple charts and displaying them alongside each other
+
+
 import 'package:flutter/material.dart';
 
 // Widget is responsible for visualizing the chart bars based on the logic contained within the chart widget

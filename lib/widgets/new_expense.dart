@@ -58,6 +58,7 @@ class _NewExpenseState extends State<NewExpense> {
         _selectedDate == null) {
       showDialog(
         context: context,
+        // Displays a popup dialog box to the user in the case of invalid input values
         builder: (ctx) => AlertDialog(
           title: const Text("Invalid Input"),
           content: const Text(
@@ -75,6 +76,7 @@ class _NewExpenseState extends State<NewExpense> {
       return;
     }
 
+    // Takes the values from the user interface and uses them to create a new Expense
     widget.onAddExpense(
       Expense(
         title: _titleController.text,
@@ -231,6 +233,7 @@ class _NewExpenseState extends State<NewExpense> {
                         Navigator.pop(context);
                       },
                       child: const Text("Cancel"),
+                    // Calls on the _submitExpenseData when pressed
                     ),
                     ElevatedButton(
                       onPressed: _submitExpenseData,
@@ -269,6 +272,7 @@ class _NewExpenseState extends State<NewExpense> {
                       },
                       child: const Text("Cancel"),
                     ),
+                    // Calls on the _submitExpenseData when pressed
                     ElevatedButton(
                       onPressed: _submitExpenseData,
                       child: const Text("Save"),

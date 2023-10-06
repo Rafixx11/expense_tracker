@@ -21,12 +21,15 @@ class ExpensesList extends StatelessWidget {
       itemCount: expenses.length,
       // Outputs each of the expenses as the ExpenseItem widget
       itemBuilder: (ctx, index) => Dismissible(
+        // Ensures that the items can only be deleted when the user swipes left
+        direction: DismissDirection.endToStart,
         key: ValueKey(expenses[index]),
         background: Container(
           color: Theme.of(context).colorScheme.error.withOpacity(0.75),
           margin: EdgeInsets.symmetric(
               horizontal: Theme.of(context).cardTheme.margin!.horizontal),
         ),
+        // Executes the onRemoveExpense function when user fully swipes left
         onDismissed: (direction) {
           onRemoveExpense(expenses[index]);
         },
