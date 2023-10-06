@@ -225,60 +225,62 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                 const SizedBox(height: 16),
                 if (width >= 600)
-                  Row(children: [
-                    const Spacer(),
-                    // Closes the modal sheet when pressed
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Cancel"),
-                    // Calls on the _submitExpenseData when pressed
-                    ),
-                    ElevatedButton(
-                      onPressed: _submitExpenseData,
-                      child: const Text("Save"),
-                    )
-                  ],)
+                  Row(
+                    children: [
+                      const Spacer(),
+                      // Closes the modal sheet when pressed
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cancel"),
+                        // Calls on the _submitExpenseData when pressed
+                      ),
+                      ElevatedButton(
+                        onPressed: _submitExpenseData,
+                        child: const Text("Save"),
+                      )
+                    ],
+                  )
                 else
-                Row(
-                  children: [
-                    // Creates a dropdown menu that displays all the categories set in the expense model
-                    DropdownButton(
-                        value: _selectedCategory,
-                        items: Category.values
-                            .map(
-                              (category) => DropdownMenuItem(
-                                value: category,
-                                child: Text(
-                                  category.name.toUpperCase(),
+                  Row(
+                    children: [
+                      // Creates a dropdown menu that displays all the categories set in the expense model
+                      DropdownButton(
+                          value: _selectedCategory,
+                          items: Category.values
+                              .map(
+                                (category) => DropdownMenuItem(
+                                  value: category,
+                                  child: Text(
+                                    category.name.toUpperCase(),
+                                  ),
                                 ),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (value) {
-                          if (value == null) {
-                            return;
-                          }
-                          setState(() {
-                            _selectedCategory = value;
-                          });
-                        }),
-                    const Spacer(),
-                    // Closes the modal sheet when pressed
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Cancel"),
-                    ),
-                    // Calls on the _submitExpenseData when pressed
-                    ElevatedButton(
-                      onPressed: _submitExpenseData,
-                      child: const Text("Save"),
-                    )
-                  ],
-                )
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            if (value == null) {
+                              return;
+                            }
+                            setState(() {
+                              _selectedCategory = value;
+                            });
+                          }),
+                      const Spacer(),
+                      // Closes the modal sheet when pressed
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cancel"),
+                      ),
+                      // Calls on the _submitExpenseData when pressed
+                      ElevatedButton(
+                        onPressed: _submitExpenseData,
+                        child: const Text("Save"),
+                      )
+                    ],
+                  )
               ],
             ),
           ),

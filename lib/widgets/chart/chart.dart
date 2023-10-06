@@ -1,4 +1,4 @@
-// This file is responsible for housing the chart widget which in turn is responsible for displaying a char to the user as well as performing some data processing in order to output various sums
+// This file is responsible for housing the chart widget which in turn is responsible for displaying a chart to the user as well as performing some data processing in order to output various sums
 
 import 'package:flutter/material.dart';
 
@@ -44,11 +44,9 @@ class Chart extends StatelessWidget {
     return totalExpense;
   }
 
-
   // Takes the sum values of all the bucets and adds them to a list for easy access
   List<double> get listOfSums {
     List<double> listOfSums = [];
-
 
     // Gets all the values in the bucket and adds them to a list for easy displaying
     for (final bucket in buckets) {
@@ -62,11 +60,6 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints) {
       final width = constraints.maxWidth;
-
-      String foodTotalAmount = listOfSums[0].toString();
-      String leisureTotalAmount = listOfSums[1].toString();
-      String travelTotalAmount = listOfSums[2].toString();
-      String workTotalAmount = listOfSums[3].toString();
 
       final isDarkMode =
           MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -92,7 +85,10 @@ class Chart extends StatelessWidget {
         child: Column(
           children: [
             // Displays the total amount of expenses
-            Text("Total amount spent $totalExpense \$"),
+            Text(
+              "Total amount spent ${totalExpense.toStringAsFixed(2)} \$",
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -132,27 +128,27 @@ class Chart extends StatelessWidget {
             if (width <= 430)
               Row(
                 children: [
-                  const SizedBox(width: 33),
-                  Text("$foodTotalAmount\$"),
-                  const SizedBox(width: 55),
-                  Text("$leisureTotalAmount\$"),
-                  const SizedBox(width: 55),
-                  Text("$travelTotalAmount\$"),
-                  const SizedBox(width: 55),
-                  Text("$workTotalAmount\$"),
+                  const SizedBox(width: 30),
+                  Text("${listOfSums[0].toStringAsFixed(2)}\$"),
+                  const SizedBox(width: 50),
+                  Text("${listOfSums[1].toStringAsFixed(2)}\$"),
+                  const SizedBox(width: 46),
+                  Text("${listOfSums[2].toStringAsFixed(2)}\$"),
+                  const SizedBox(width: 53),
+                  Text("${listOfSums[3].toStringAsFixed(2)}\$"),
                 ],
               )
             else
               Row(
                 children: [
-                  const SizedBox(width: 35),
-                  Text("$foodTotalAmount\$"),
+                  const SizedBox(width: 28),
+                  Text("${listOfSums[0].toStringAsFixed(2)}\$"),
                   const SizedBox(width: 60),
-                  Text("$leisureTotalAmount\$"),
-                  const SizedBox(width: 60),
-                  Text("$travelTotalAmount\$"),
-                  const SizedBox(width: 60),
-                  Text("$workTotalAmount\$"),
+                  Text("${listOfSums[1].toStringAsFixed(2)}\$"),
+                  const SizedBox(width: 57),
+                  Text("${listOfSums[2].toStringAsFixed(2)}\$"),
+                  const SizedBox(width: 55),
+                  Text("${listOfSums[3].toStringAsFixed(2)}\$"),
                 ],
               ),
           ],

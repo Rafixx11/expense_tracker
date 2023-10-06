@@ -32,8 +32,6 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
-
-
   // Displays a modal sheet with the widget NewExpense on top of it
   void _openAddExpenseOverlay() {
     showModalBottomSheet(

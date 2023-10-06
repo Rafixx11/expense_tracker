@@ -1,9 +1,7 @@
 // This file is responsible for housing the ExpenseItem widget which in turn is responsible for outputting indidual items in the expenses list
 
-
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
-
 
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem({
@@ -25,7 +23,10 @@ class ExpenseItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Outputs the title of the expense
-            Text(expense.title, style: Theme.of(context).textTheme.titleLarge,),
+            Text(
+              expense.title,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(
               height: 4,
             ),
@@ -38,7 +39,9 @@ class ExpenseItem extends StatelessWidget {
                   children: [
                     // Chooses an appropriate category based on the category of the expense that is to be output
                     Icon(categoryIcons[expense.category]),
-                    const SizedBox(width: 8,),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     // Outputs the formatted date
                     Text(expense.formattedDate),
                   ],

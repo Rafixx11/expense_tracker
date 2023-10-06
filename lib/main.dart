@@ -6,10 +6,9 @@ var kColorScheme =
     ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 96, 59, 181));
 
 // Primary color that will be used when user uses the app with dark mode
-var kDarkColorScheme =
-    ColorScheme.fromSeed(
-      brightness: Brightness.dark,
-      seedColor: const Color.fromARGB(255, 5, 99, 125));
+var kDarkColorScheme = ColorScheme.fromSeed(
+    brightness: Brightness.dark,
+    seedColor: const Color.fromARGB(255, 5, 99, 125));
 
 // Starts the expense tracker application
 void main() {
