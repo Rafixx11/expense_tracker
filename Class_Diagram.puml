@@ -1,0 +1,108 @@
+@startuml
+set namespaceSeparator ::
+
+class "expense_tracker::models::expense.dart::Expense" {
+    +String id
+    +String title
+    +double amount
+    +DateTime date
+    +Category category
+    +String formattedDate
+}
+
+"expense_tracker::models::expense.dart::Expense" o-- "expense_tracker::models::expense.dart::Category"
+
+class "expense_tracker::models::expense.dart::ExpenseBucket" {
+    +Category category
+    +List<Expense> expenses
+    +double totalExpenses
+}
+
+"expense_tracker::models::expense.dart::ExpenseBucket" o-- "expense_tracker::models::expense.dart::Category"
+
+class "expense_tracker::models::expense.dart::Category" {
+    +int index
+    {static} +List<Category> values
+    {static} +Category food
+    {static} +Category travel
+    {static} +Category leisure
+    {static} +Category work
+}
+
+"expense_tracker::models::expense.dart::Category" o-- "expense_tracker::models::expense.dart::Category"
+"dart::core::Enum" <|-- "expense_tracker::models::expense.dart::Category"
+
+class "expense_tracker::widgets::chart::chart.dart::Chart" {
+    +List<Expense> expenses
+    +List<ExpenseBucket> buckets
+    +double maxTotalExpense
+    +double totalExpense
+    +List<double> listOfSums
+    +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "expense_tracker::widgets::chart::chart.dart::Chart"
+
+class "expense_tracker::widgets::chart::chart_bar.dart::ChartBar" {
+    +double fill
+    +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "expense_tracker::widgets::chart::chart_bar.dart::ChartBar"
+
+class "expense_tracker::widgets::expenses-list::expenses_list.dart::ExpensesList" {
+    +List<Expense> expenses
+    +void Function(Expense) onRemoveExpense
+    +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "expense_tracker::widgets::expenses-list::expenses_list.dart::ExpensesList"
+
+class "expense_tracker::widgets::expenses-list::expense_item.dart::ExpenseItem" {
+    +Expense expense
+    +Widget build()
+}
+
+"expense_tracker::widgets::expenses-list::expense_item.dart::ExpenseItem" o-- "expense_tracker::models::expense.dart::Expense"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "expense_tracker::widgets::expenses-list::expense_item.dart::ExpenseItem"
+
+class "expense_tracker::widgets::expenses.dart::Expenses" {
+    +State<Expenses> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "expense_tracker::widgets::expenses.dart::Expenses"
+
+class "expense_tracker::widgets::expenses.dart::_ExpensesState" {
+    -List<Expense> _registeredExpenses
+    -void _openAddExpenseOverlay()
+    -void _addExpense()
+    -void _removeExpense()
+    +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "expense_tracker::widgets::expenses.dart::_ExpensesState"
+
+class "expense_tracker::widgets::new_expense.dart::NewExpense" {
+    +void Function(Expense) onAddExpense
+    +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "expense_tracker::widgets::new_expense.dart::NewExpense"
+
+class "expense_tracker::widgets::new_expense.dart::_NewExpenseState" {
+    -TextEditingController _titleController
+    -TextEditingController _amountController
+    -DateTime? _selectedDate
+    -Category _selectedCategory
+    -void _presentDatePicker()
+    +void dispose()
+    -void _submitExpenseData()
+    +Widget build()
+}
+
+"expense_tracker::widgets::new_expense.dart::_NewExpenseState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"expense_tracker::widgets::new_expense.dart::_NewExpenseState" o-- "expense_tracker::models::expense.dart::Category"
+"flutter::src::widgets::framework.dart::State" <|-- "expense_tracker::widgets::new_expense.dart::_NewExpenseState"
+
+
+@enduml
